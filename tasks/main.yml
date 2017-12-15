@@ -5,12 +5,14 @@
     state: "{{ pgbouncer_install_state }}"
     update_cache: yes
     cache_valid_time: 3600
+  become: true
 
 - name: install postgresql-client
   apt:
     pkg: postgresql-client
     state: present
   when: pgbouncer_install_psql
+  become: true
 
 - name: template config files
   template:
@@ -20,5 +22,7 @@
     owner: postgres
     group: postgres
     mode: 0640
-  with_fileglob: templates/*
+  with_fileglob:
+    - templates/*
   notify: "{{ pgbouncer_service_state }} pgbouncer"
+  become: true

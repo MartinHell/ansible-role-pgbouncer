@@ -5,6 +5,7 @@
   service:
     name: pgbouncer
     state: reloaded
+  become: true
 
 # this is left in here so a playbook can still use if changing stuff that
 # requires a complete restart
@@ -12,3 +13,4 @@
   service:
     name: pgbouncer
     state: restarted
+  become: true

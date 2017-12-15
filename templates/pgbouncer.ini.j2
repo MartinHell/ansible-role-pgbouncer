@@ -109,7 +109,7 @@ default_pool_size = {{ pgbouncer_default_pool_size | default(20) }}
 ;min_pool_size = 0
 
 ; how many additional connection to allow in case of trouble
-;reserve_pool_size = 5
+reserve_pool_size = {{ pgbouncer_reserve_pool_size | default(5) }}
 
 ; if a clients needs to wait more than this many seconds, use reserve pool
 ;reserve_pool_timeout = 3
@@ -166,7 +166,7 @@ log_disconnections = {{ pgbouncer_log_disconnections | default(1) }}
 ;; Dangerous.  Server connection is closed if query does not return
 ;; in this time.  Should be used to survive network problems,
 ;; _not_ as statement_timeout. (default: 0)
-;query_timeout = 0
+query_timeout = {{ pgbouncer_query_timeout | default(0) }}
 
 ;; Dangerous.  Client connection is closed if the query is not assigned
 ;; to a server in this time.  Should be used to limit the number of queued
